@@ -1,0 +1,237 @@
+<style>
+    /* =========================================
+       1. ESTILOS E ANIMAÇÕES
+       ========================================= */
+    .container-mascote-completo {
+        position: relative;
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+        
+        /* Imagem do mascote */
+        background-image: url('mascote-novo-contador.png');
+        background-size: contain;
+        background-position: center;
+        background-repeat: no-repeat;
+        aspect-ratio: 16 / 9; 
+        
+        /* Animação de flutuar + respirar */
+        animation: flutuarERespirar 5s ease-in-out infinite;
+        filter: drop-shadow(0px 25px 30px rgba(0, 0, 0, 0.15));
+        transition: transform 0.4s ease;
+        
+        /* Fonte limpa */
+        font-family: 'Segoe UI', Tahoma, sans-serif;
+    }
+
+    @keyframes flutuarERespirar {
+        0%, 100% { transform: translateY(0) scale(1); }
+        50% { transform: translateY(-15px) scale(1.02); }
+    }
+
+    /* =========================================
+       2. POSICIONAMENTO DAS CAIXAS
+       ========================================= */
+    .caixa-contador {
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        /* Remove o fundo para integrar com a imagem */
+        background: transparent; 
+    }
+
+    /* SARESP (Topo Esquerdo) */
+    .pos-saresp {
+        top: 22%;    
+        left: 6%;  
+        width: 37%;  
+        height: 24%; 
+    }
+
+    /* PROVÃO PAULISTA (Topo Direito) */
+    .pos-provao {
+        top: 22%;    
+        right: 6%; 
+        width: 39%;  
+        height: 24%; 
+    }
+
+    /* ENEM 1º DIA (Baixo Esquerdo) */
+    .pos-enem1 {
+        bottom: 12%;  
+        left: 8%;  
+        width: 36%;  
+        height: 24%; 
+    }
+
+    /* ENEM 2º DIA (Baixo Direito) */
+    .pos-enem2 {
+        bottom: 13%;  
+        right: 8%; 
+        width: 37%;  
+        height: 24%; 
+    }
+
+    /* =========================================
+       3. ESTILO DOS NÚMEROS
+       ========================================= */
+    .linha-tempo {
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        gap: clamp(5px, 1.5vw, 20px);
+        width: 100%;
+        margin-top: 2%;
+    }
+
+    .tempo-box {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .numero {
+        font-size: clamp(20px, 3.8vw, 60px);
+        font-weight: 800;
+        line-height: 1;
+        letter-spacing: -1px;
+    }
+
+    /* Cores combinando com cada card */
+    .cor-saresp { color: #004b93; }
+    .cor-provao { color: #0a7034; }
+    .cor-enem1 { color: #004b93; } /* Azul do ENEM */
+    .cor-enem2 { color: #4b0082; } /* Roxo do ENEM */
+
+    .label {
+        font-size: clamp(7px, 1vw, 11px);
+        font-weight: 800;
+        margin-top: 10%;
+        text-transform: uppercase;
+    }
+
+    .label-saresp { color: #004b93; }
+    .label-provao { color: #0a7034; }
+    .label-enem1 { color: #004b93; }
+    .label-enem2 { color: #4b0082; }
+
+    /* Ajuste para celular */
+    @media (max-width: 768px) {
+        .container-mascote-completo {
+            aspect-ratio: auto;
+            padding-bottom: 60%; 
+        }
+    }
+</style>
+
+<!-- =========================================
+     ÁREA DO MASCOTE E CONTADORES
+     ========================================= -->
+<div class="container-mascote-completo">
+    
+    <!-- 1. SARESP -->
+    <div class="caixa-contador pos-saresp">
+        <div class="linha-tempo">
+            <div class="tempo-box"><div class="numero cor-saresp" id="s-dias">00</div><div class="label label-saresp">Dias</div></div>
+            <div class="tempo-box"><div class="numero cor-saresp" id="s-horas">00</div><div class="label label-saresp">Horas</div></div>
+            <div class="tempo-box"><div class="numero cor-saresp" id="s-min">00</div><div class="label label-saresp">Min</div></div>
+            <div class="tempo-box"><div class="numero cor-saresp" id="s-seg">00</div><div class="label label-saresp">Seg</div></div>
+        </div>
+    </div>
+
+    <!-- 2. PROVÃO PAULISTA -->
+    <div class="caixa-contador pos-provao">
+        <div class="linha-tempo">
+            <div class="tempo-box"><div class="numero cor-provao" id="p-dias">00</div><div class="label label-provao">Dias</div></div>
+            <div class="tempo-box"><div class="numero cor-provao" id="p-horas">00</div><div class="label label-provao">Horas</div></div>
+            <div class="tempo-box"><div class="numero cor-provao" id="p-min">00</div><div class="label label-provao">Min</div></div>
+            <div class="tempo-box"><div class="numero cor-provao" id="p-seg">00</div><div class="label label-provao">Seg</div></div>
+        </div>
+    </div>
+
+    <!-- 3. ENEM 1º DIA -->
+    <div class="caixa-contador pos-enem1">
+        <div class="linha-tempo">
+            <div class="tempo-box"><div class="numero cor-enem1" id="e1-dias">00</div><div class="label label-enem1">Dias</div></div>
+            <div class="tempo-box"><div class="numero cor-enem1" id="e1-horas">00</div><div class="label label-enem1">Horas</div></div>
+            <div class="tempo-box"><div class="numero cor-enem1" id="e1-min">00</div><div class="label label-enem1">Min</div></div>
+            <div class="tempo-box"><div class="numero cor-enem1" id="e1-seg">00</div><div class="label label-enem1">Seg</div></div>
+        </div>
+    </div>
+
+    <!-- 4. ENEM 2º DIA -->
+    <div class="caixa-contador pos-enem2">
+        <div class="linha-tempo">
+            <div class="tempo-box"><div class="numero cor-enem2" id="e2-dias">00</div><div class="label label-enem2">Dias</div></div>
+            <div class="tempo-box"><div class="numero cor-enem2" id="e2-horas">00</div><div class="label label-enem2">Horas</div></div>
+            <div class="tempo-box"><div class="numero cor-enem2" id="e2-min">00</div><div class="label label-enem2">Min</div></div>
+            <div class="tempo-box"><div class="numero cor-enem2" id="e2-seg">00</div><div class="label label-enem2">Seg</div></div>
+        </div>
+    </div>
+
+</div>
+
+<!-- =========================================
+     SCRIPT DO CONTADOR
+     ========================================= -->
+<script>
+    // ========================================================
+    // ALTERE AS DATAS AQUI! 
+    // Formato: "Ano-Mês-DiaT Hora:Minuto:Segundo" (Ex: "2026-11-10T08:00:00")
+    // ========================================================
+    const dataSaresp = new Date("2026-10-28T00:00:00").getTime(); 
+    const dataProvao = new Date("2026-11-10T00:00:00").getTime(); 
+    const dataEnem1  = new Date("2026-11-08T00:00:00").getTime(); // Exemplo ENEM 1º dia
+    const dataEnem2  = new Date("2026-11-15T00:00:00").getTime(); // Exemplo ENEM 2º dia
+
+    function atualizarContadores() {
+        const agora = new Date().getTime();
+
+        // Função para calcular a diferença
+        function calcular(dataAlvo) {
+            let diff = dataAlvo - agora;
+            if (diff < 0) diff = 0; // Se a data passar, zera
+
+            return {
+                d: String(Math.floor(diff / (1000 * 60 * 60 * 24))).padStart(2, '0'),
+                h: String(Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))).padStart(2, '0'),
+                m: String(Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0'),
+                s: String(Math.floor((diff % (1000 * 60)) / 1000)).padStart(2, '0')
+            };
+        }
+
+        const s  = calcular(dataSaresp);
+        const p  = calcular(dataProvao);
+        const e1 = calcular(dataEnem1);
+        const e2 = calcular(dataEnem2);
+
+        // Atualiza SARESP
+        document.getElementById("s-dias").innerText = s.d;
+        document.getElementById("s-horas").innerText = s.h;
+        document.getElementById("s-min").innerText = s.m;
+        document.getElementById("s-seg").innerText = s.s;
+
+        // Atualiza PROVÃO
+        document.getElementById("p-dias").innerText = p.d;
+        document.getElementById("p-horas").innerText = p.h;
+        document.getElementById("p-min").innerText = p.m;
+        document.getElementById("p-seg").innerText = p.s;
+
+        // Atualiza ENEM 1º DIA
+        document.getElementById("e1-dias").innerText = e1.d;
+        document.getElementById("e1-horas").innerText = e1.h;
+        document.getElementById("e1-min").innerText = e1.m;
+        document.getElementById("e1-seg").innerText = e1.s;
+
+        // Atualiza ENEM 2º DIA
+        document.getElementById("e2-dias").innerText = e2.d;
+        document.getElementById("e2-horas").innerText = e2.h;
+        document.getElementById("e2-min").innerText = e2.m;
+        document.getElementById("e2-seg").innerText = e2.s;
+    }
+
+    // Executa a cada 1 segundo
+    setInterval(atualizarContadores, 1000);
+    atualizarContadores();
+</script>
